@@ -30,10 +30,10 @@ jobs:
         env: 
           DISPLAY: 0.0
 
-      - name: create PNG
-        run: python3 kicadScripts/plot_board.py sample1/sample1.kicad_pcb
-        env: 
-          DISPLAY: 0.0
+#      - name: create PNG
+#        run: python3 kicadScripts/plot_board.py sample1/sample1.kicad_pcb
+#        env: 
+#          DISPLAY: 0.0
 
       - name: generate Gerber
         run: |
