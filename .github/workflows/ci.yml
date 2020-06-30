@@ -2,22 +2,41 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: install KiCAD v5
-      run: |
-        sudo add-apt-repository --yes ppa:js-reynaud/kicad-5.1
-        sudo apt update
-        sudo apt install --install-recommends kicad
+      - uses: actions/checkout@v2
+      - name: install KiCAD v5
+        run: |
+          sudo add-apt-repository --yes ppa:js-reynaud/kicad-5.1
+          sudo apt update
+          sudo apt install --install-recommends kicad
+      - name: submodules init
+        run: git submodule init && git submodule update
 
-    - name: Run a one-line script
-      run: |
-        python3 test.py
+      - name: create HTML BOM
+        run: python3 InteractiveHtmlBom/InteractiveHtmlBom/generate_interactive_bom.py sample1/sample1.kicad_pcb --no-browser --dest-dir ../out
+
+      - name: create PNG
+        run: python3 kicadScripts/plot_board.py sample1/sample1.kicad_pcb
+
+      - name: generate Gerber
+        run: |
+          python3 kicadScripts/plot_gerbers.py sample1/sample1.kicad_pcb
+          cp $(find . -type f -name "*.zip") ./out/gerber.zip
+
+      - name: Upload all Files
+        uses: actions/upload-artifact@v1
+        with:
+          name: HTML-BOM
+          path: out/ibom.html
+          name: SVG
+          path: sample1/plot/temp/sample1-merged.svg
+          name: Gerber
+          path: out/gerber.zip
