@@ -1,0 +1,6 @@
+[submodule "InteractiveHtmlBom"]
+	path = InteractiveHtmlBom
+	url = https://github.com/openscopeproject/InteractiveHtmlBom
+[submodule "kicadScripts"]
+	path = kicadScripts
+	url = https://github.com/gregdavill/kicadScripts
