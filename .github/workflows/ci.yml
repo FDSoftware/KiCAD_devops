@@ -44,7 +44,5 @@ jobs:
       - name: Upload all Files
         uses: actions/upload-artifact@v2
         with:
-          name: MasterArtifacts
-          path: |
-            out/ibom.html
-            out/gerber.zip
+          name: artifacts
+          path: ./out/
