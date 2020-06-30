@@ -20,4 +20,4 @@ jobs:
 
     - name: Run a one-line script
       run: |
-        echo $(python3 test.py)
+        python3 test.py
