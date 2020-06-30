@@ -32,12 +32,10 @@ jobs:
           cp $(find . -type f -name "*.zip") ./out/gerber.zip
 
       - name: Upload all Files
-        uses: actions/upload-artifact@v3
-          with:
-            title:  MasterArtifacts
-            name: HTML-BOM
-            path: out/ibom.html
-            name: SVG
-            path: sample1/plot/temp/sample1-merged.svg
-            name: Gerber
-            path: out/gerber.zip
+        uses: actions/upload-artifact@v2
+        with:
+          name: MasterArtifacts
+          path: |
+            out/ibom.html
+            sample1/plot/temp/sample1-merged.svg
+            out/gerber.zip
