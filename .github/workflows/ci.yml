@@ -34,6 +34,7 @@ jobs:
 #        run: python3 kicadScripts/plot_board.py sample1/sample1.kicad_pcb
 #        env: 
 #          DISPLAY: 0.0
+#       sample1/plot/temp/sample1-merged.svg
 
       - name: generate Gerber
         run: |
@@ -46,5 +47,4 @@ jobs:
           name: MasterArtifacts
           path: |
             out/ibom.html
-            sample1/plot/temp/sample1-merged.svg
             out/gerber.zip
