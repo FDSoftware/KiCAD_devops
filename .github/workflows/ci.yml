@@ -20,5 +20,4 @@ jobs:
 
     - name: Run a one-line script
       run: |
-        python -V
         python3 test.py
