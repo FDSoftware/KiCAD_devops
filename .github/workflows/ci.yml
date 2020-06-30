@@ -14,9 +14,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: install KiCAD v5
       run: |
-        add-apt-repository --yes ppa:js-reynaud/kicad-5.1
-        apt update
-        apt install --install-recommends kicad
+        sudo add-apt-repository --yes ppa:js-reynaud/kicad-5.1
+        sudo apt update
+        sudo apt install --install-recommends kicad
 
     - name: Run a one-line script
       run: |
