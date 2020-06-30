@@ -17,11 +17,13 @@ jobs:
           sudo add-apt-repository --yes ppa:js-reynaud/kicad-5.1
           sudo apt update
           sudo apt install --install-recommends kicad
+          sudo apt install xvfb
+
       - name: submodules init
         run: git submodule init && git submodule update
 
       - name: create HTML BOM
-        run: python3 InteractiveHtmlBom/InteractiveHtmlBom/generate_interactive_bom.py sample1/sample1.kicad_pcb --no-browser --dest-dir ../out
+        run: xvfb-run --auto-servernum --server-args "-screen 0 1024x768x24"  python3 InteractiveHtmlBom/InteractiveHtmlBom/generate_interactive_bom.py sample1/sample1.kicad_pcb --no-browser --dest-dir ../out
         env: 
           DISPLAY: 0.0
 
